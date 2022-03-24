@@ -11,7 +11,7 @@ import {PaginationModel} from "../../models/pagination.model";
 export class UsersComponent implements OnInit {
 
   usersList: UserModel[] = []
-  paginationInfo: PaginationModel = ({} as PaginationModel)
+  paginationInfo: PaginationModel = {} as PaginationModel
   usersLoaded: Promise<boolean> = Promise.resolve(false)
   page: number = 1
 

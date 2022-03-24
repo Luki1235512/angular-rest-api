@@ -1,0 +1,29 @@
+<p>posts works!</p>
+<div *ngIf="postsLoaded | async">
+
+  <div *ngFor="let post of postsList">
+    <p>{{post.user_id}}, {{post.title}}</p>
+    <p>{{post.body}}</p>
+    Comments:
+    <div *ngIf="commentsLoaded | async">
+      <div *ngFor="let comment of commentsList">
+        <!--      <p>-->
+        <p *ngIf="post.id === comment.post_id">
+          {{comment.body}}
+        </p>
+
+      </div>
+    </div>
+
+    <br />
+  </div>
+
+  <div>
+    <a [ngClass]="{disabled:paginationPostsInfo.links.previous === 'null'}" (click)="setPage(paginationPostsInfo.page - 1)">
+      {{paginationPostsInfo.page - 1}}</a> |
+
+    <a>{{paginationPostsInfo.page}}</a> |
+
+    <a (click)="setPage(paginationPostsInfo.page + 1)">{{paginationPostsInfo.page + 1}}</a>
+  </div>
+</div>
