@@ -41,31 +41,39 @@ export class PostsComponent implements OnInit {
   }
 
   getComments() {
-    this.commentsService.getCommentsList(1).subscribe(response => {
+    this.commentsService.getComments().subscribe(response => {
       this.paginationCommentsInfo = response['meta']['pagination']
-      this.getAllComments()
-      // this.commentsLoaded = Promise.resolve(true)
+      // this.getAllComments()
+
+      for (let i = 1; i <= this.paginationCommentsInfo.pages; i++) {
+        this.commentsService.getCommentsList(i).subscribe(response => {
+          let tmp: CommentModel[]
+          tmp = response['data']
+          for (let j = 0; j < tmp.length; j++) {
+            this.commentsList.push(tmp[j])
+          }
+        })
+      }
+
+      this.commentsLoaded = Promise.resolve(true)
     })
   }
 
-  getAllComments() {
-    for (let i = 1; i <= this.paginationCommentsInfo.pages; i++) {
-      this.commentsService.getCommentsList(i).subscribe(response => {
-        let tmp: CommentModel[] = []
-        tmp = response['data']
-        for (let j = 0; j < tmp.length; j++) {
-          this.commentsList.push(tmp[j])
-        }
-        // this.commentsList.push(response['data'])
-        // console.log(response['data'])
-        // console.log(this.commentsList)
-      })
-    }
-
-    this.commentsLoaded = Promise.resolve(true)
-    console.log(this.commentsList)
-  }
-
+  // getAllComments() {
+  //   for (let i = 1; i <= this.paginationCommentsInfo.pages; i++) {
+  //     this.commentsService.getCommentsList(i).subscribe(response => {
+  //       let tmp: CommentModel[]
+  //       tmp = response['data']
+  //       for (let j = 0; j < tmp.length; j++) {
+  //         this.commentsList.push(tmp[j])
+  //       }
+  //     })
+  //   }
+  //
+  //   this.commentsLoaded = Promise.resolve(true)
+  //   console.log(this.commentsList)
+  // }
+  //
   setPage(page: number) {
     console.log(page)
     this.getPageWithPosts(page)

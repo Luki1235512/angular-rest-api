@@ -7,11 +7,9 @@
     Comments:
     <div *ngIf="commentsLoaded | async">
       <div *ngFor="let comment of commentsList">
-        <!--      <p>-->
         <p *ngIf="post.id === comment.post_id">
-          {{comment.body}}
+          {{comment.name}}: {{comment.body}}
         </p>
-
       </div>
     </div>
 

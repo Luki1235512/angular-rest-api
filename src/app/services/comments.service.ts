@@ -15,5 +15,10 @@ export class CommentsService {
     return this.http.get(`https://gorest.co.in/public/v1/comments?page=${page}`)
   }
 
+  getComments(): Observable<any> {
+    return this.http.get(`https://gorest.co.in/public/v1/comments`)
+  }
+
+
 
 }
