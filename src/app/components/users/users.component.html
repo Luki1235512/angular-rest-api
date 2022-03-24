@@ -1,0 +1,20 @@
+<p>users works!</p>
+<div *ngIf="usersLoaded | async">
+
+  <div *ngFor="let user of usersList">
+    <p>{{user.name}}, {{user.gender}}</p>
+    <p>{{user.email}}</p>
+    <p>{{user.status}}</p>
+    <br />
+  </div>
+
+  <div>
+    <a [ngClass]="{disabled:paginationInfo.links.previous === 'null'}" (click)="setPage(paginationInfo.page - 1)">
+      {{paginationInfo.page - 1}}</a> |
+
+    <a>{{paginationInfo.page}}</a> |
+
+    <a (click)="setPage(paginationInfo.page + 1)">{{paginationInfo.page + 1}}</a>
+  </div>
+</div>
+
