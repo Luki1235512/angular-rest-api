@@ -16,5 +16,18 @@
 
     <a (click)="setPage(paginationInfo.page + 1)">{{paginationInfo.page + 1}}</a>
   </div>
+
+
+  <form [formGroup]="checkoutFrom" (ngSubmit)="addButton()">
+
+    <input id="name" type="text" formControlName="name">
+    <input id="email" type="text" formControlName="email">
+    <input id="gender" type="text" formControlName="gender">
+
+    <button class="button" type="submit">Add</button>
+  </form>
+<!--  <div>-->
+<!--    <button (click)="addButton()">add</button>-->
+<!--  </div>-->
 </div>
 

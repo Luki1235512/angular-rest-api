@@ -8,6 +8,7 @@ import {UsersService} from "./services/users.service";
 import {HttpClientModule} from "@angular/common/http";
 import { PostsComponent } from './components/posts/posts.component';
 import { TodosComponent } from './components/todos/todos.component';
+import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,10 +20,12 @@ import { TodosComponent } from './components/todos/todos.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    FormBuilder
   ],
   bootstrap: [AppComponent]
 })
