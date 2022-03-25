@@ -13,12 +13,13 @@ export class TodosComponent implements OnInit {
   todosList: TodoModel[] = []
   paginationInfo: PaginationModel = {} as PaginationModel
   todosLoaded: Promise<boolean> = Promise.resolve(false)
-  page: number = 1
+  page: number = JSON.parse(<string>localStorage.getItem('todosPage'))
 
   constructor(private todosService: TodosService) { }
 
   ngOnInit(): void {
     this.getPageWithTodos(this.page)
+    console.log(this.page)
   }
 
   getPageWithTodos(page: number) {
@@ -32,7 +33,8 @@ export class TodosComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log(page)
+    // console.log(page)
+    localStorage.setItem('todosPage', String(page))
     this.getPageWithTodos(page)
   }
 

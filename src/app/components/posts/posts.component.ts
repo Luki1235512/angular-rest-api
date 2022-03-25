@@ -15,11 +15,10 @@ export class PostsComponent implements OnInit {
   postsList: PostModel[] = []
   paginationPostsInfo: PaginationModel = {} as PaginationModel
   postsLoaded: Promise<boolean> = Promise.resolve(false)
-  postsPage: number = 1
+  postsPage: number = JSON.parse(<string>localStorage.getItem('postsPage'))
 
   commentsList: CommentModel[] = []
   paginationCommentsInfo: PaginationModel = {} as PaginationModel
-  commentsPage: number = 1
   commentsLoaded: Promise<boolean> = Promise.resolve(false)
 
   constructor(private postsService: PostsServices,
@@ -43,7 +42,6 @@ export class PostsComponent implements OnInit {
   getComments() {
     this.commentsService.getComments().subscribe(response => {
       this.paginationCommentsInfo = response['meta']['pagination']
-      // this.getAllComments()
 
       for (let i = 1; i <= this.paginationCommentsInfo.pages; i++) {
         this.commentsService.getCommentsList(i).subscribe(response => {
@@ -59,23 +57,9 @@ export class PostsComponent implements OnInit {
     })
   }
 
-  // getAllComments() {
-  //   for (let i = 1; i <= this.paginationCommentsInfo.pages; i++) {
-  //     this.commentsService.getCommentsList(i).subscribe(response => {
-  //       let tmp: CommentModel[]
-  //       tmp = response['data']
-  //       for (let j = 0; j < tmp.length; j++) {
-  //         this.commentsList.push(tmp[j])
-  //       }
-  //     })
-  //   }
-  //
-  //   this.commentsLoaded = Promise.resolve(true)
-  //   console.log(this.commentsList)
-  // }
-  //
   setPage(page: number) {
     console.log(page)
+    localStorage.setItem('postsPage', String(page))
     this.getPageWithPosts(page)
   }
 

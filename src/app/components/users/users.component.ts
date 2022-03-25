@@ -13,12 +13,13 @@ export class UsersComponent implements OnInit {
   usersList: UserModel[] = []
   paginationInfo: PaginationModel = {} as PaginationModel
   usersLoaded: Promise<boolean> = Promise.resolve(false)
-  page: number = 1
+  page: number = JSON.parse(<string>localStorage.getItem('usersPage'))
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
     this.getPageWithUsers(this.page)
+    console.log(this.page)
   }
 
   getPageWithUsers(page: number) {
@@ -32,7 +33,8 @@ export class UsersComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log(page)
+    // console.log(page)
+    localStorage.setItem('usersPage', String(page))
     this.getPageWithUsers(page)
   }
 
