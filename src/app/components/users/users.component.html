@@ -1,10 +1,11 @@
 <form [formGroup]="checkoutFrom" (ngSubmit)="addButton()">
 
-  <input id="name" type="text" formControlName="name">
-  <input id="email" type="text" formControlName="email">
-  <input id="gender" type="text" formControlName="gender">
+  <input id="name" type="text" formControlName="name" placeholder="Full name">
+  <input id="email" type="text" formControlName="email" placeholder="Email">
+  <input id="gender" type="text" formControlName="gender" placeholder="gender">
 
   <button class="button" type="submit">Add</button>
+  <hr />
 </form>
 
 <div *ngIf="usersLoaded | async">
