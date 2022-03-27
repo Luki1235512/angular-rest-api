@@ -1,11 +1,10 @@
-<p>todos works!</p>
 <div *ngIf="todosLoaded | async">
 
   <div *ngFor="let todos of todosList">
     <p>{{todos.id}}, {{todos.title}}</p>
     <p>{{todos.due_on}}</p>
     <p>{{todos.status}}</p>
-    <br />
+    <hr />
   </div>
 
   <div>

@@ -4,3 +4,9 @@ export interface PostModel {
   title: string
   body: string
 }
+
+export interface PostModelPost {
+  user_id: number
+  title: string
+  body: string
+}

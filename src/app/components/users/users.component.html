@@ -1,11 +1,19 @@
-<p>users works!</p>
+<form [formGroup]="checkoutFrom" (ngSubmit)="addButton()">
+
+  <input id="name" type="text" formControlName="name">
+  <input id="email" type="text" formControlName="email">
+  <input id="gender" type="text" formControlName="gender">
+
+  <button class="button" type="submit">Add</button>
+</form>
+
 <div *ngIf="usersLoaded | async">
 
   <div *ngFor="let user of usersList">
-    <p>{{user.name}}, {{user.gender}}</p>
+    <p>{{user.name}}({{user.id}}), {{user.gender}}</p>
     <p>{{user.email}}</p>
     <p>{{user.status}}</p>
-    <br />
+    <hr />
   </div>
 
   <div>
@@ -18,14 +26,7 @@
   </div>
 
 
-  <form [formGroup]="checkoutFrom" (ngSubmit)="addButton()">
 
-    <input id="name" type="text" formControlName="name">
-    <input id="email" type="text" formControlName="email">
-    <input id="gender" type="text" formControlName="gender">
-
-    <button class="button" type="submit">Add</button>
-  </form>
 <!--  <div>-->
 <!--    <button (click)="addButton()">add</button>-->
 <!--  </div>-->

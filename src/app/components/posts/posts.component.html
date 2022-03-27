@@ -1,4 +1,12 @@
-<p>posts works!</p>
+<form [formGroup]="checkoutFrom" (ngSubmit)="addButton()">
+
+  <input id="user_id" type="text" formControlName="user_id">
+  <input id="title" type="text" formControlName="title">
+  <input id="body" type="text" formControlName="body">
+
+  <button class="button" type="submit">Add</button>
+</form>
+
 <div *ngIf="postsLoaded | async">
 
   <div *ngFor="let post of postsList">
@@ -13,7 +21,7 @@
       </div>
     </div>
 
-    <br />
+    <hr />
   </div>
 
   <div>
@@ -24,4 +32,7 @@
 
     <a (click)="setPage(paginationPostsInfo.page + 1)">{{paginationPostsInfo.page + 1}}</a>
   </div>
+
+
+
 </div>

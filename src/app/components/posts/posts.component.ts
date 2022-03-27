@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {PostsServices} from "../../services/posts.services";
-import {PostModel} from "../../models/post.model";
+import {PostModel, PostModelPost} from "../../models/post.model";
 import {PaginationModel} from "../../models/pagination.model";
 import {CommentsService} from "../../services/comments.service";
 import {CommentModel} from "../../models/comment.model";
+import {FormBuilder} from "@angular/forms";
+import {UserModelPost} from "../../models/user.model";
 
 @Component({
   selector: 'app-posts',
@@ -21,8 +23,15 @@ export class PostsComponent implements OnInit {
   paginationCommentsInfo: PaginationModel = {} as PaginationModel
   commentsLoaded: Promise<boolean> = Promise.resolve(false)
 
+  checkoutFrom = this.formBuilder.group({
+    user_id: '',
+    title: '',
+    body: ''
+  })
+
   constructor(private postsService: PostsServices,
-              private commentsService: CommentsService) { }
+              private commentsService: CommentsService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.getPageWithPosts(this.postsPage)
@@ -61,6 +70,18 @@ export class PostsComponent implements OnInit {
     console.log(page)
     localStorage.setItem('postsPage', String(page))
     this.getPageWithPosts(page)
+  }
+
+  addButton() {
+    const post: PostModelPost = {
+      user_id: this.checkoutFrom.value.user_id,
+      title: this.checkoutFrom.value.title,
+      body: this.checkoutFrom.value.body
+    }
+
+    this.postsService.addPost(post).subscribe()
+    this.checkoutFrom.reset()
+
   }
 
 }
