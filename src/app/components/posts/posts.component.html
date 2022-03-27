@@ -24,7 +24,7 @@
     <hr />
   </div>
 
-  <div>
+  <div class="pages">
     <a [ngClass]="{disabled:paginationPostsInfo.links.previous === 'null'}" (click)="setPage(paginationPostsInfo.page - 1)">
       {{paginationPostsInfo.page - 1}}</a> |
 
@@ -32,7 +32,4 @@
 
     <a (click)="setPage(paginationPostsInfo.page + 1)">{{paginationPostsInfo.page + 1}}</a>
   </div>
-
-
-
 </div>
