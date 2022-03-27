@@ -1,3 +1,4 @@
+// model for receiving comments from api
 export interface CommentModel {
   id: number
   post_id: number

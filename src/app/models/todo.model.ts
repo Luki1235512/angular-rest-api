@@ -1,3 +1,4 @@
+// model for receiving todos from api
 export interface TodoModel {
   id: number
   user_id: number

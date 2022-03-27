@@ -11,6 +11,7 @@ import {FormBuilder} from "@angular/forms";
 })
 export class UsersComponent implements OnInit {
 
+  // Initialize all variables
   usersList: UserModel[] = []
   paginationInfo: PaginationModel = {} as PaginationModel
   usersLoaded: Promise<boolean> = Promise.resolve(false)
@@ -26,25 +27,25 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPageWithUsers(this.page)
-    console.log(this.page)
   }
 
+  // get information about users from current page
   getPageWithUsers(page: number) {
     this.usersService.getUsersList(page).subscribe(response => {
       this.paginationInfo = response['meta']['pagination']
       this.usersList = response['data']
-      console.log(this.paginationInfo.links)
       this.page = this.paginationInfo.page
       this.usersLoaded = Promise.resolve(true)
     })
   }
 
+  // saves users page and loads new content
   setPage(page: number) {
-    // console.log(page)
     localStorage.setItem('usersPage', String(page))
     this.getPageWithUsers(page)
   }
 
+  // submits post request with user
   addButton() {
     const user: UserModelPost = {
       name: this.checkoutFrom.value.name,

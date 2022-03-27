@@ -1,3 +1,4 @@
+// model for receiving users from api
 export interface UserModel {
   id: number
   name: string
@@ -6,6 +7,7 @@ export interface UserModel {
   status: string
 }
 
+// model for sending user to api
 export interface UserModelPost {
   name: string
   email: string

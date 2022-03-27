@@ -13,10 +13,12 @@ export class PostsServices {
   constructor(private http: HttpClient) {
   }
 
+  // get request to get posts from specific page
   getPostsList(page: number): Observable<any> {
     return this.http.get(`https://gorest.co.in/public/v1/posts?page=${page}`)
   }
 
+  // post request to api with post
   addPost(post: PostModelPost): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',

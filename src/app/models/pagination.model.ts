@@ -1,5 +1,5 @@
+// model for receiving pagination info from api
 export interface PaginationModel {
-  // pagination: {
     total: number
     pages: number
     page: number
@@ -9,5 +9,4 @@ export interface PaginationModel {
       current: string
       next: string
     }
-  // }
 }

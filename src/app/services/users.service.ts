@@ -14,10 +14,12 @@ export class UsersService {
   }
 
 
+  // get request to get users from specific page
   getUsersList(page: number): Observable<any> {
     return this.http.get(`https://gorest.co.in/public/v1/users?page=${page}`)
   }
 
+  // post request to api with user
   addUser(user: UserModelPost): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',

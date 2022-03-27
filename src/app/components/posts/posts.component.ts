@@ -5,7 +5,6 @@ import {PaginationModel} from "../../models/pagination.model";
 import {CommentsService} from "../../services/comments.service";
 import {CommentModel} from "../../models/comment.model";
 import {FormBuilder} from "@angular/forms";
-import {UserModelPost} from "../../models/user.model";
 
 @Component({
   selector: 'app-posts',
@@ -14,6 +13,7 @@ import {UserModelPost} from "../../models/user.model";
 })
 export class PostsComponent implements OnInit {
 
+  // Initialize all variables
   postsList: PostModel[] = []
   paginationPostsInfo: PaginationModel = {} as PaginationModel
   postsLoaded: Promise<boolean> = Promise.resolve(false)
@@ -38,16 +38,17 @@ export class PostsComponent implements OnInit {
     this.getComments()
   }
 
+  // get information about posts from current page
   getPageWithPosts(page: number) {
     this.postsService.getPostsList(page).subscribe(response => {
       this.paginationPostsInfo = response['meta']['pagination']
       this.postsList = response['data']
-      console.log(this.paginationPostsInfo.links)
       this.postsPage = this.paginationPostsInfo.page
       this.postsLoaded = Promise.resolve(true)
     })
   }
 
+  // get all comments to match posts
   getComments() {
     this.commentsService.getComments().subscribe(response => {
       this.paginationCommentsInfo = response['meta']['pagination']
@@ -61,17 +62,17 @@ export class PostsComponent implements OnInit {
           }
         })
       }
-
       this.commentsLoaded = Promise.resolve(true)
     })
   }
 
+  // saves posts page and loads new content
   setPage(page: number) {
-    console.log(page)
     localStorage.setItem('postsPage', String(page))
     this.getPageWithPosts(page)
   }
 
+  // submits post request with post
   addButton() {
     const post: PostModelPost = {
       user_id: this.checkoutFrom.value.user_id,

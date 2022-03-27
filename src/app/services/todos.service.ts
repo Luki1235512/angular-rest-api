@@ -12,6 +12,7 @@ export class TodosService {
   constructor(private http: HttpClient) {
   }
 
+  // get request to get todos from specific page
   getTodosList(page: number): Observable<any> {
     return this.http.get(`https://gorest.co.in/public/v1/todos?page=${page}`)
   }
