@@ -23,7 +23,7 @@ export class UsersService {
   addUser(user: UserModelPost): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
-        'Authorization': 'Bearer 5dc717bd23ced3295a527b42331aaa936b3ff4698d7f59b68681beac1a8823b7' })
+        'Authorization': 'Bearer YOUR_BEARER_TOKEN' })
     };
     return this.http.post('https://gorest.co.in/public/v1/users', user, httpOptions)
   }
